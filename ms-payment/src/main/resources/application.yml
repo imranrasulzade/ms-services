@@ -5,6 +5,19 @@ spring:
     remote:
       restart:
         enabled: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/ms_payment
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 12345678
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+
 
 server:
   port: 0
@@ -12,3 +25,10 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+
+
+
+client:
+  ms-card:
+    endpoint: http://localhost:8020/ms-card/
