@@ -7,11 +7,18 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-
+      #for load balancer
+      routes:
+        - id: account
+          predicates:
+            - Path=/api/account
+            - Method=GET
+          uri: lb://ms-account
 
 
 server:
   port: 8020
+
 eureka:
   client:
     service-url:
