@@ -32,3 +32,25 @@ eureka:
 client:
   ms-card:
     endpoint: http://localhost:8020/ms-card/
+
+
+#for circuit breaker
+management:
+  health:
+    circuit-breakers:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j.circuit-breaker:
+    instances:
+      external:
+        register-health-indicator: true
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        wait-duration-in-open-state: 30s
+        automatic-transition-from-open-to-half-open-enabled: true
+        permitted-number-of-calls-in-half-open-state: 2
+        sliding-window-size: 4
+        sliding-window-type: COUNT_BASED

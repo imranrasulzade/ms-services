@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 
-import static com.rsl.mspayment.model.ExceptionConstants.UNEXPECTED_EXCEPTION_CODE;
-import static com.rsl.mspayment.model.ExceptionConstants.UNEXPECTED_EXCEPTION_MESSAGE;
+import java.lang.reflect.UndeclaredThrowableException;
+import java.rmi.UnexpectedException;
+
+import static com.rsl.mspayment.model.ExceptionConstants.*;
 
 @Slf4j
 @RestControllerAdvice
@@ -29,4 +31,18 @@ public class ErrorHandler {
         return new ExceptionResponse(exception.getCode(), exception.getMessage());
     }
 
+
+    @ExceptionHandler(UndeclaredThrowableException.class) //InvocationTargetException
+    @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+    public ExceptionResponse handleServiceUnavailable(UndeclaredThrowableException e){
+        log.error("UndeclaredThrowableException: {}", e.getMessage());
+        return new ExceptionResponse(HttpStatus.SERVICE_UNAVAILABLE.name(), e.getCause().getCause().getMessage());
+    }
+
+    @ExceptionHandler(ExceptionResponseFeign.class) //InvocationTargetException
+    @ResponseStatus(HttpStatus.SERVICE_UNAVAILABLE)
+    public ExceptionResponse handleServiceUnavailable(ExceptionResponseFeign e){
+        log.error("ExceptionResponseFeign: {}", e.getMessage());
+        return new ExceptionResponse(HttpStatus.SERVICE_UNAVAILABLE.name(), e.getMessage());
+    }
 }

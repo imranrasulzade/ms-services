@@ -30,27 +30,32 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
 
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '3.2.5'
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop', version: '3.2.5'
-// https://mvnrepository.com/artifact/io.github.openfeign/feign-annotation-error-decoder
-    implementation group: 'io.github.openfeign', name: 'feign-annotation-error-decoder', version: '13.2.1'
-// https://mvnrepository.com/artifact/io.github.openfeign/feign-jackson
-    implementation group: 'io.github.openfeign', name: 'feign-jackson', version: '13.2.1'
-// https://mvnrepository.com/artifact/io.github.resilience4j/resilience4j-feign
-    runtimeOnly group: 'io.github.resilience4j', name: 'resilience4j-feign', version: '2.2.0'
-// https://mvnrepository.com/artifact/io.github.resilience4j/resilience4j-spring-boot2
-    implementation group: 'io.github.resilience4j', name: 'resilience4j-spring-boot2', version: '2.2.0'
+//    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '3.2.5'
+//    implementation 'org.springframework.boot:spring-boot-starter-aop:2.3.0.RELEASE'
+    implementation 'io.github.openfeign:feign-annotation-error-decoder:11.3'
+    implementation 'io.github.openfeign:feign-jackson:11.3'
+    implementation 'io.github.resilience4j:resilience4j-feign:0.16.0'
+    implementation 'io.github.resilience4j:resilience4j-spring-boot2:1.7.0'
+//    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-circuitbreaker-reactor-resilience4j', version: '3.1.1'
+//    implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-circuitbreaker-resilience4j', version: '3.1.1'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'io.github.resilience4j:resilience4j-spring-boot2:1.5.0'
+
+
+
+    // Resilience
+//    implementation 'io.github.resilience4j:resilience4j-circuitbreaker:0.16.0'
+
 // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
     implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.5.0'
 
     implementation 'org.liquibase:liquibase-core'
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux
+
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '3.2.4'
-    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-openfeign
     implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '4.1.1'
-    // https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
-    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+
+    implementation 'io.micrometer:micrometer-registry-prometheus'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
